@@ -1,0 +1,261 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Matematisk modellering - Uppgift 1</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
+</head>
+
+<body>
+    <a href="/reports/"><< Tillbaka</a>
+
+    <h1>Uppgift 1</h1>
+
+    <p>Detta är redovisningen av uppgift 1 i kursen matmod. Nedan finns
+        frågorna med tillhörande svar</p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>1. Hitta en tidsserie som ni vill använda för
+        uppgiften och plotta tidsserien.</h2>
+
+    <p>Jag har valt tidsserien "antalet zontagningar för vinnaren per
+        spelomgång i mobilspelet Turf, de första 25 omgångarna".
+        <a href="https://turfgame.com">Turf</a> är ett
+        mycket populärt mobilspel som funnits sedan 2010. Antalet zontagningar
+        för vinnare har jag hämtat på
+        <a href="https://wiki.turfgame.com/en/wiki/Round_1">Turfs wiki</a>.</p>
+
+        <figure>
+            <img src="{% static 'reports/images/timeseries.png' %}" alt="Turf tidsserie">
+            <figcaption>Antalet zontagningar för vinnaren per omgång de
+                första 25 omgångarna, i mobilspelet Turf.</figcaption>
+        </figure>
+
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>2. Ni ska implementera egna metoder för att numeriskt beräkna derivatan
+         med hjälp av framåt-, bakåt- och central differenskvot.</h2>
+
+    <p>Jag tänker att vi inte kommer dela med oss av
+        denna sidan så som vi gör i andra kurser, utan bara lämna in på Its.
+        Vidare så kommer rättaren förmodligen redan ha implementerat sina
+        egna metoder. För det tredje så är det inga krångliga funktioner.
+        Därför delar jag med mig av mina metoder här. </p>
+
+    <h4>Framåt differenskvot:</h4>
+    <pre>
+        def forwarddiff(y, t):
+            """Framåt differenskvot"""
+            fdy = []
+            for index in range(len(y) - 1):
+                delta = (y[index + 1] - y[index]) / (t[index + 1] - t[index])
+                fdy.append(delta)
+            return fdy
+    </pre>
+
+
+    <h4>Bakåt differenskvot:</h4>
+    <pre>
+        def backwarddiff(y, t):
+            """Bakåt differenskvot"""
+            fdy = []
+            for index in range(1, len(y)):
+                delta = (y[index] - y[index - 1]) / (t[index] - t[index - 1])
+                fdy.append(delta)
+            return fdy
+    </pre>
+
+
+    <h4>Central differenskvot:</h4>
+    <pre>
+        def centerdiff(y, t):
+            """Center differenskvot"""
+            fdy = []
+            for index in range(1, len(y) - 1):
+                delta = (y[index + 1] - y[index - 1]) / (t[index + 1] - t[index - 1])
+                fdy.append(delta)
+            return fdy
+    </pre>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>3. Plotta tidsserien med de numeriska derivatorna i samma fönster.</h2>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_forward_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med framåt differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            framåt differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_backward_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med bakåt differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            bakåt differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_center_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med central differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            central differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>4. Ett enkelt glidande medelvärde (eng. simple moving average) beräknar
+        man genom att beräkna medelvärdet i ett visst tidsintervall
+        (även kallat ett fönster). Väljer man fönsterstorleken 2 så kan man
+        beräkna för varje t, y_medel[t] = (y[t] + y[t-1])/2 eller
+        y_medel[t] = (y[t] + y[t+1])/2. För ett fönster med storlek 3 så kan
+        det glidande medelvärdet beräknas
+        y_medel[t] = (y[t+1] + y[t] + y[t-1)/3.
+
+        För den tidsserie ni valt, så ska ni beräkna ett enkelt glidande
+        medelvärde med olika fönsterstorlek och plotta dessa .</h2>
+
+
+        <p>Jag definierade mina enkla glidande medelvärden enligt följande:</p>
+
+        <p>Fönsterstorlek = 2:</p>
+        <pre>
+            mean[t] = (y[t] + y[t + 1]) / 2
+        </pre>
+
+        <p>Fönsterstorlek = 3:</p>
+        <pre>
+            mean[t] = (y[t - 1] + y[t] + y[t + 1]) / 3
+        </pre>
+
+        <p>Fönsterstorlek = 4:</p>
+        <pre>
+            mean[t] = (y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 4
+        </pre>
+
+        <p>Fönsterstorlek = 5:</p>
+        <pre>
+            mean[t] = (y[t - 2] + y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 5
+        </pre>
+
+
+        <p>Plotting av dessa enkla glidande medelvärden:</p>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f2.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 2">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 2.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f3.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 3">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 3.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f4.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 4">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 4.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f5.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 5">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 5.</figcaption>
+        </figure>
+
+        <br>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>5. Reflektera över och beskriv vad derivatan för den tidsserie ni valt
+        betyder. Vad är för- och nackdelarna med att
+        använda “genomsnittsfiltret”?</h2>
+
+    <p>Kortfattat kan man säga att derivatan för min tidsserie beskriver
+        förändringen (ökning/minskning) av antalet zoner som behövs
+        för att vinna en omgång i Turf, jämfört med omgången innan.</p>
+
+    <p>Men låt mig utveckla lite. Om vi tänker oss att antalet zoner
+        som behövs för att vinna kan beskrivas av en funktion. Funktionen
+        påverkas förmodligen av årstid, väder, hur många spelare som satsar
+        på att vinna, och en massa andra faktorer. Då beskriver derivatan i
+        tidpunkten för kommande omgång, hur många fler eller färre zoner
+        som måste tas för att vinna, jämfört med aktuell omgång. Visste man
+        funktionen och derivatan skulle man alltså kunna planera sina
+        zontagningar, och skulle då inte alls behöva bry sig om hur
+        aktiva sina motspelare är.  </p>
+
+    <p>För- och nackdelar med "genomsnittsfiltret" då. Om vi börjar med
+        fördelar så ser jag en stor fördel rent generellt. Om vi tänker
+        oss att vår tidsserie är mätpunkter av något slag (kanske temperatur,
+        antalet tranor i Hornborgarsjön eller något annat) så minskar risken
+        för felmätningar, då genomsnittsfiltret jämnar ut vår kurva. Ju
+        längre fönster man har, desto mer jämnas toppar och dalar ut. </p>
+
+    <p>En annan fördel är att vi tydligare ser trender. Om vi tar långa
+        fönster så får vi genomsnittlig lutning på vår kurva. </p>
+
+    <p>Nackdelar då. Ja, det mest uppenbara som jag kommer på, är att man
+        tappar exaktheten i sina mätningar eller värden. Som exempel kan
+        vi tänka oss att man vill veta högsta och lägsta temperatur under
+        året. Applicerar vi glidande medelvärden på våra mätpunkter så
+        missar vi troligen temperatur-ytterligheterna, vilket i detta
+        fallet skulle vara väldigt tråkigt. </p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+
+</body>
+</html>

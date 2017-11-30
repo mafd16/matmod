@@ -1,0 +1,45 @@
+/* unvisited link */
+a:link {
+   color: blue;
+   text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: blue;
+    text-decoration: none;
+}
+
+/* mouse over link */
+a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: red;
+    text-decoration: underline;
+}
+
+body {
+    background-color: #F6F6F6;
+    /*font-weight: bold;*/
+    width: 960px;
+    margin: auto;
+    padding: 10px;
+    min-height: 500px;
+}
+
+.enflo {
+    width: 20%;
+}
+
+html {
+    background-color: #DDDDDD;
+}
+
+pre {
+    background-color: lightgrey;
+    padding-top: 10px;
+}
