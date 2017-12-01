@@ -24,10 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k_49dew$5-@uc@k9iwx850va5=qll#(8bkp87slfn8$*sp9$fq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False#True
+#DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['marton.pythonanywhere.com']
-
+#ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -122,4 +123,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+STATIC_URL = '/home/marton/matmod/reports/static/'
