@@ -124,6 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 #STATIC_URL = '/static/'
-#STATIC_URL = '/home/marton/matmod/reports/static/'
+STATIC_URL = '/home/marton/matmod/reports/static/'
 
 STATIC_ROOT = '/home/marton/matmod/reports/static/'
