@@ -1,0 +1,267 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Matematisk modellering - Uppgift 2</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'reports/style.css' %}" />
+</head>
+
+<body>
+    <a href="/reports/"><< Tillbaka</a>
+
+    <h1>Uppgift 2</h1>
+
+    <p>Detta är redovisningen av uppgift 2 i kursen matmod. Nedan finns
+        frågorna med tillhörande svar</p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>Monte Carlo-metoden</h2>
+
+    <h3>1. Välj en funktion f(x) och ett intervall [a,b]
+        sådan att f(x) => 0 i intervallet [a,b].</h3>
+
+    <p>Jag har valt funktionen ln(x) på intervallet [1, 4]. </p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h3>2. Plotta grafen y = f(x) i intervallet [a,b]</h3>
+
+    <figure>
+        <img src="{% static 'reports/images/mc2.png' %}"
+            alt="Naturliga logaritmen">
+        <figcaption>Funktionen ln(x) på intervallet [1, 4]</figcaption>
+    </figure>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>3. Använd Monte Carlo-metoden för att beräkna arean av området mellan
+        x-axeln och kurvan för olika stora värden n (3-4 stycken).</h2>
+
+    <p>Jag har använt följande värden på n. I tabellen visas även antalet
+        punkter m under funktionen, m / n och värdet på (b - a)(m / n) som
+        genererats under mina körningar.</p>
+
+    <table>
+        <tr>
+            <th>n</th>
+            <th>m</th>
+            <th>m / n</th>
+            <th>(b - a)(m / n)</th>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>9</td>
+            <td>0.45</td>
+            <td>1.35</td>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td>121</td>
+            <td>0.605</td>
+            <td>1.815</td>
+        </tr>
+        <tr>
+            <td>2 000</td>
+            <td>1 238</td>
+            <td>0.619</td>
+            <td>1.857</td>
+        </tr>
+        <tr>
+            <td>20 000</td>
+            <td>12 214</td>
+            <td>0.6107</td>
+            <td>1.8321</td>
+        </tr>
+    </table>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h3>4. För varje värde på n, plotta de slumpade punkterna i ny figur
+        tilsammans med grafen y. I figuren ska det framgå vilka av punkterna
+        som ligger under grafen och vilka som ligger över</h3>
+
+
+
+
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_forward_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med framåt differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            framåt differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_backward_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med bakåt differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            bakåt differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/timeseries_center_diff_quot.png' %}"
+        alt="Numerisk beräkning av derivata med central differenskvot">
+        <figcaption>Tidsserien och den numeriska beräkningen av derivata med
+            central differenskvot.</figcaption>
+    </figure>
+
+    <br>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>4. Ett enkelt glidande medelvärde (eng. simple moving average) beräknar
+        man genom att beräkna medelvärdet i ett visst tidsintervall
+        (även kallat ett fönster). Väljer man fönsterstorleken 2 så kan man
+        beräkna för varje t, y_medel[t] = (y[t] + y[t-1])/2 eller
+        y_medel[t] = (y[t] + y[t+1])/2. För ett fönster med storlek 3 så kan
+        det glidande medelvärdet beräknas
+        y_medel[t] = (y[t+1] + y[t] + y[t-1)/3.
+
+        För den tidsserie ni valt, så ska ni beräkna ett enkelt glidande
+        medelvärde med olika fönsterstorlek och plotta dessa .</h2>
+
+
+        <p>Jag definierade mina enkla glidande medelvärden enligt följande:</p>
+
+        <p>Fönsterstorlek = 2:</p>
+        <pre>
+            mean[t] = (y[t] + y[t + 1]) / 2
+        </pre>
+
+        <p>Fönsterstorlek = 3:</p>
+        <pre>
+            mean[t] = (y[t - 1] + y[t] + y[t + 1]) / 3
+        </pre>
+
+        <p>Fönsterstorlek = 4:</p>
+        <pre>
+            mean[t] = (y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 4
+        </pre>
+
+        <p>Fönsterstorlek = 5:</p>
+        <pre>
+            mean[t] = (y[t - 2] + y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 5
+        </pre>
+
+
+        <p>Plotting av dessa enkla glidande medelvärden:</p>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f2.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 2">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 2.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f3.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 3">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 3.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f4.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 4">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 4.</figcaption>
+        </figure>
+
+        <br>
+
+        <figure>
+            <img
+            src="{% static 'reports/images/simp_move_ave_f5.png' %}"
+            alt="Enkelt glidande medelvärde med fönsterstorlek = 5">
+            <figcaption>Tidsserien och enkelt glidande medelvärde med
+                fönsterstorlek = 5.</figcaption>
+        </figure>
+
+        <br>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h2>5. Reflektera över och beskriv vad derivatan för den tidsserie ni valt
+        betyder. Vad är för- och nackdelarna med att
+        använda “genomsnittsfiltret”?</h2>
+
+    <p>Kortfattat kan man säga att derivatan för min tidsserie beskriver
+        förändringen (ökning/minskning) av antalet zoner som behövs
+        för att vinna en omgång i Turf, jämfört med omgången innan.</p>
+
+    <p>Men låt mig utveckla lite. Om vi tänker oss att antalet zoner
+        som behövs för att vinna kan beskrivas av en funktion. Funktionen
+        påverkas förmodligen av årstid, väder, hur många spelare som satsar
+        på att vinna, och en massa andra faktorer. Då beskriver derivatan i
+        tidpunkten för kommande omgång, hur många fler eller färre zoner
+        som måste tas för att vinna, jämfört med aktuell omgång. Visste man
+        funktionen och derivatan skulle man alltså kunna planera sina
+        zontagningar, och skulle då inte alls behöva bry sig om hur
+        aktiva sina motspelare är.  </p>
+
+    <p>För- och nackdelar med "genomsnittsfiltret" då. Om vi börjar med
+        fördelar så ser jag en stor fördel rent generellt. Om vi tänker
+        oss att vår tidsserie är mätpunkter av något slag (kanske temperatur,
+        antalet tranor i Hornborgarsjön eller något annat) så minskar risken
+        för felmätningar, då genomsnittsfiltret jämnar ut vår kurva. Ju
+        längre fönster man har, desto mer jämnas toppar och dalar ut. </p>
+
+    <p>En annan fördel är att vi tydligare ser trender. Om vi tar långa
+        fönster så får vi genomsnittlig lutning på vår kurva. </p>
+
+    <p>Nackdelar då. Ja, det mest uppenbara som jag kommer på, är att man
+        tappar exaktheten i sina mätningar eller värden. Som exempel kan
+        vi tänka oss att man vill veta högsta och lägsta temperatur under
+        året. Applicerar vi glidande medelvärden på våra mätpunkter så
+        missar vi troligen temperatur-ytterligheterna, vilket i detta
+        fallet skulle vara väldigt tråkigt. </p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+
+</body>
+</html>
