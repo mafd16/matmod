@@ -24,11 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k_49dew$5-@uc@k9iwx850va5=qll#(8bkp87slfn8$*sp9$fq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
-#ALLOWED_HOSTS = ['marton.pythonanywhere.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['marton.pythonanywhere.com']
+#ALLOWED_HOSTS = []
 
 # Application definition
 

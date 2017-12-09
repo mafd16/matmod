@@ -15,6 +15,9 @@
     <p>Detta är redovisningen av uppgift 2 i kursen matmod. Nedan finns
         frågorna med tillhörande svar</p>
 
+    <p>Jag, Martin Fagerlund, nås
+        på <a href="mailto:mngfagerlund@gmail.com">mail</a>.</p>
+
     <br>
     <br>
     <hr>
@@ -24,7 +27,7 @@
     <h2>Monte Carlo-metoden</h2>
 
     <h3>1. Välj en funktion f(x) och ett intervall [a,b]
-        sådan att f(x) => 0 i intervallet [a,b].</h3>
+        sådan att f(x) >= 0 i intervallet [a,b].</h3>
 
     <p>Jag har valt funktionen ln(x) på intervallet [1, 4]. </p>
 
@@ -52,39 +55,39 @@
         x-axeln och kurvan för olika stora värden n (3-4 stycken).</h2>
 
     <p>Jag har använt följande värden på n. I tabellen visas även antalet
-        punkter m under funktionen, m / n och värdet på (b - a)(m / n) som
-        genererats under mina körningar.</p>
+        punkter m under funktionen, m / n och värdet på (b - a)*(m / n)*ln(b)
+        som genererats under mina körningar.</p>
 
     <table>
         <tr>
             <th>n</th>
             <th>m</th>
             <th>m / n</th>
-            <th>(b - a)(m / n)</th>
+            <th>(b - a)(m / n)ln(b)</th>
         </tr>
         <tr>
             <td>20</td>
-            <td>9</td>
-            <td>0.45</td>
-            <td>1.35</td>
+            <td>12</td>
+            <td>0.6</td>
+            <td>2.495330</td>
         </tr>
         <tr>
             <td>200</td>
-            <td>121</td>
-            <td>0.605</td>
-            <td>1.815</td>
+            <td>118</td>
+            <td>0.59</td>
+            <td>2.453741</td>
         </tr>
         <tr>
-            <td>2 000</td>
-            <td>1 238</td>
-            <td>0.619</td>
-            <td>1.857</td>
+            <td>2000</td>
+            <td>1227</td>
+            <td>0.6135</td>
+            <td>2.551475</td>
         </tr>
         <tr>
-            <td>20 000</td>
-            <td>12 214</td>
-            <td>0.6107</td>
-            <td>1.8321</td>
+            <td>20000</td>
+            <td>12159</td>
+            <td>0.60795</td>
+            <td>2.528393</td>
         </tr>
     </table>
 
@@ -96,11 +99,13 @@
 
     <h3>4. För varje värde på n, plotta de slumpade punkterna i ny figur
         tilsammans med grafen y. I figuren ska det framgå vilka av punkterna
-        som ligger under grafen och vilka som ligger över</h3>
+        som ligger under grafen och vilka som ligger över. Avgör med hjälp av
+        Monte Carlo-metoden ett värde på arean för området mellan kurvan och
+        x-axeln i intervallet [a,b].</h3>
 
     <figure>
         <img
-        src="{% static 'reports/images/mc3n20m9A1.35.png' %}"
+        src="{% static 'reports/images/mc3n20m12A2.49532985002.png' %}"
         alt="ln(x) med n=20 slumpade punkter.">
         <figcaption>ln(x) med n=20 slumpade punkter.</figcaption>
     </figure>
@@ -109,7 +114,7 @@
 
     <figure>
         <img
-        src="{% static 'reports/images/mc3n200m121A1.815.png' %}"
+        src="{% static 'reports/images/mc3n200m118A2.45374101918.png' %}"
         alt="ln(x) med n=200 slumpade punkter.">
         <figcaption>ln(x) med n=200 slumpade punkter.</figcaption>
     </figure>
@@ -118,7 +123,7 @@
 
     <figure>
         <img
-        src="{% static 'reports/images/mc3n2000m1238A1.857.png' %}"
+        src="{% static 'reports/images/mc3n2000m1227A2.55147477164.png' %}"
         alt="ln(x) med n=2000 slumpade punkter.">
         <figcaption>ln(x) med n=2000 slumpade punkter.</figcaption>
     </figure>
@@ -127,95 +132,28 @@
 
     <figure>
         <img
-        src="{% static 'reports/images/mc3n20000m12214A1.8321.png' %}"
+        src="{% static 'reports/images/mc3n20000m12159A2.52839297053.png' %}"
         alt="ln(x) med n=20 000 slumpade punkter.">
         <figcaption>ln(x) med n=20 000 slumpade punkter.</figcaption>
     </figure>
 
     <br>
 
-    <br>
-    <br>
-    <hr>
-    <br>
-    <br>
+    <p>Om vi tittar på mina värden i tabellen under punkt 3 ovan, så ser vi
+        att värdet verkar gå mot ca 2.5. Jag har även gjort ett par körningar
+        med ännu fler punkter. Med n = 200 000 får jag värdet 2.542117, och
+        med n = 2 000 000 får jag värdet 2.544841. Det verkar som att det
+        krävs mycket större värden på n för att få mer exakta värden på arean.
+        Jag drar dock slutsatsen att arean verkar vara ca 2.54. </p>
 
-    <h2>4. Ett enkelt glidande medelvärde (eng. simple moving average) beräknar
-        man genom att beräkna medelvärdet i ett visst tidsintervall
-        (även kallat ett fönster). Väljer man fönsterstorleken 2 så kan man
-        beräkna för varje t, y_medel[t] = (y[t] + y[t-1])/2 eller
-        y_medel[t] = (y[t] + y[t+1])/2. För ett fönster med storlek 3 så kan
-        det glidande medelvärdet beräknas
-        y_medel[t] = (y[t+1] + y[t] + y[t-1)/3.
+    <p>Nu blir jag även lite nyfiken på vad det exakta värdet är. Den primitiva
+        funktionen för ln(x) är x(ln(x) - 1). Integralen från 1 till 4 av ln(x)
+        blir alltså 4(ln(4) - 1) - 1(ln(1) - 1) = 2.545177...</p>
 
-        För den tidsserie ni valt, så ska ni beräkna ett enkelt glidande
-        medelvärde med olika fönsterstorlek och plotta dessa .</h2>
+    <p>Vi ser att Monte Carlo-metoden har tagit oss ganska så nära, och vår
+        uppskattning på 2.54 stämmer skapligt bra.</p>
 
 
-        <p>Jag definierade mina enkla glidande medelvärden enligt följande:</p>
-
-        <p>Fönsterstorlek = 2:</p>
-        <pre>
-            mean[t] = (y[t] + y[t + 1]) / 2
-        </pre>
-
-        <p>Fönsterstorlek = 3:</p>
-        <pre>
-            mean[t] = (y[t - 1] + y[t] + y[t + 1]) / 3
-        </pre>
-
-        <p>Fönsterstorlek = 4:</p>
-        <pre>
-            mean[t] = (y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 4
-        </pre>
-
-        <p>Fönsterstorlek = 5:</p>
-        <pre>
-            mean[t] = (y[t - 2] + y[t - 1] + y[t] + y[t + 1] + y[t + 2]) / 5
-        </pre>
-
-
-        <p>Plotting av dessa enkla glidande medelvärden:</p>
-
-        <figure>
-            <img
-            src="{% static 'reports/images/simp_move_ave_f2.png' %}"
-            alt="Enkelt glidande medelvärde med fönsterstorlek = 2">
-            <figcaption>Tidsserien och enkelt glidande medelvärde med
-                fönsterstorlek = 2.</figcaption>
-        </figure>
-
-        <br>
-
-        <figure>
-            <img
-            src="{% static 'reports/images/simp_move_ave_f3.png' %}"
-            alt="Enkelt glidande medelvärde med fönsterstorlek = 3">
-            <figcaption>Tidsserien och enkelt glidande medelvärde med
-                fönsterstorlek = 3.</figcaption>
-        </figure>
-
-        <br>
-
-        <figure>
-            <img
-            src="{% static 'reports/images/simp_move_ave_f4.png' %}"
-            alt="Enkelt glidande medelvärde med fönsterstorlek = 4">
-            <figcaption>Tidsserien och enkelt glidande medelvärde med
-                fönsterstorlek = 4.</figcaption>
-        </figure>
-
-        <br>
-
-        <figure>
-            <img
-            src="{% static 'reports/images/simp_move_ave_f5.png' %}"
-            alt="Enkelt glidande medelvärde med fönsterstorlek = 5">
-            <figcaption>Tidsserien och enkelt glidande medelvärde med
-                fönsterstorlek = 5.</figcaption>
-        </figure>
-
-        <br>
 
     <br>
     <br>
@@ -223,40 +161,15 @@
     <br>
     <br>
 
-    <h2>5. Reflektera över och beskriv vad derivatan för den tidsserie ni valt
-        betyder. Vad är för- och nackdelarna med att
-        använda “genomsnittsfiltret”?</h2>
+    <h2>Centrala gränsvärdessatsen</h2>
 
-    <p>Kortfattat kan man säga att derivatan för min tidsserie beskriver
-        förändringen (ökning/minskning) av antalet zoner som behövs
-        för att vinna en omgång i Turf, jämfört med omgången innan.</p>
+    <h3>1. Välj en slumpmodell med oberoende slumpvariabler</h3>
 
-    <p>Men låt mig utveckla lite. Om vi tänker oss att antalet zoner
-        som behövs för att vinna kan beskrivas av en funktion. Funktionen
-        påverkas förmodligen av årstid, väder, hur många spelare som satsar
-        på att vinna, och en massa andra faktorer. Då beskriver derivatan i
-        tidpunkten för kommande omgång, hur många fler eller färre zoner
-        som måste tas för att vinna, jämfört med aktuell omgång. Visste man
-        funktionen och derivatan skulle man alltså kunna planera sina
-        zontagningar, och skulle då inte alls behöva bry sig om hur
-        aktiva sina motspelare är.  </p>
-
-    <p>För- och nackdelar med "genomsnittsfiltret" då. Om vi börjar med
-        fördelar så ser jag en stor fördel rent generellt. Om vi tänker
-        oss att vår tidsserie är mätpunkter av något slag (kanske temperatur,
-        antalet tranor i Hornborgarsjön eller något annat) så minskar risken
-        för felmätningar, då genomsnittsfiltret jämnar ut vår kurva. Ju
-        längre fönster man har, desto mer jämnas toppar och dalar ut. </p>
-
-    <p>En annan fördel är att vi tydligare ser trender. Om vi tar långa
-        fönster så får vi genomsnittlig lutning på vår kurva. </p>
-
-    <p>Nackdelar då. Ja, det mest uppenbara som jag kommer på, är att man
-        tappar exaktheten i sina mätningar eller värden. Som exempel kan
-        vi tänka oss att man vill veta högsta och lägsta temperatur under
-        året. Applicerar vi glidande medelvärden på våra mätpunkter så
-        missar vi troligen temperatur-ytterligheterna, vilket i detta
-        fallet skulle vara väldigt tråkigt. </p>
+    <p>Jag tänker mig följande oberoende slumpvariabler. Ta fyra kort ur en
+        kortlek, med återläggning emellan varje kort. Varje tagning av ett kort
+        tänker vi oss är helt slumpmässig. Notera summan av de fyra korten.
+        Ess=1, knekt=11, dam=12, kung=13. Utför detta ett stort antal gånger. Då
+        kommer summan av dragningarna vara normalfördelad.</p>
 
     <br>
     <br>
@@ -264,6 +177,46 @@
     <br>
     <br>
 
+    <h3>2. Genomför ett stort antal försök av slumpmodellen och spara
+        utfallen.</h3>
+
+    <p>Jag har utfört mina kortdragningar sammanlagt 1 000 000 (en miljon)
+        gånger. Resultatet ser ut så här.</p>
+
+    <p>[0, 0, 0, 46, 147, 355, 695, 1251, 1894, 3055, 4240, 5730, 7706, 9970,
+        12698, 15996, 19338, 22913, 27065, 30668, 34993, 38959, 42565, 45230,
+        48154, 49939, 51274, 51353, 51161, 49620, 47413, 44747, 42244, 38983,
+        35063, 31236, 27343, 23261, 19360, 15780, 12640, 10068, 7602, 5687,
+        4269, 2928, 1914, 1218, 676, 373, 138, 42]</p>
+
+    <p>Att vi får nollor på de tre första posterna är i sin ordning, den minsta
+        summan vi kan få är ju 4, då vi lyckas ta fyra ess.</p>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <h3>3. Plotta ett histogram av försökens utfall.</h3>
+
+    <figure>
+        <img
+        src="{% static 'reports/images/cardhistogram.png' %}"
+        alt="Fördelning av summan av 4 kort, efter en miljon försök.">
+        <figcaption>Fördelning av summan av 4 kort, efter en
+            miljon försök.</figcaption>
+    </figure>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+
+    <p>Denna sidan är byggd i
+        <a href="https://www.djangoproject.com/">Django</a> av
+        <a href="mailto:mngfagerlund@gmail.com">Martin Fagerlund</a>, mafd16</p>
 
 </body>
 </html>
