@@ -21,3 +21,9 @@ def uppgift2(request):
     template = loader.get_template('reports/uppgift2.html')
     context = {'test_variable': 'some text'}
     return HttpResponse(template.render(context, request))
+
+def uppgift3(request):
+    #return HttpResponse("Hello, world. You're at the reports index.")
+    template = loader.get_template('reports/uppgift3.html')
+    context = {'test_variable': 'some text'}
+    return HttpResponse(template.render(context, request))
