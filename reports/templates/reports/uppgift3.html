@@ -28,7 +28,7 @@
 
     <h3>1. Välj en sida som ni ska pinga.</h3>
 
-    <p>Jag har valt sidan tv.nu. </p>
+    <p>Jag har valt sidan www.smhi.se. </p>
 
     <br>
     <br>
@@ -39,7 +39,40 @@
     <h3>2. Beräkna och presentera konfidensintervallen för 95% respektive 99%
         för olika värden på n &gt; 30.</h3>
 
-    <p>Presentera några konfidensintervall här!</p>
+    <h4>n = 32</h4>
+
+    <p>Medelvärde: 12.38, Standardavvikelse: 3.59</p>
+
+    <p>95 % konfidensintervall: [11.13, 13.62], längd: 2.49</p>
+
+    <p>99 % konfidensintervall: [10.74, 14.01], längd: 3.27</p>
+
+
+    <h4>n = 64</h4>
+
+    <p>Medelvärde: 13.71, Standardavvikelse: 7.62</p>
+
+    <p>95 % konfidensintervall: [11.75, 15.67], längd: 3.92</p>
+
+    <p>99 % konfidensintervall: [11.13, 16.29], längd: 5.16</p>
+
+
+    <h4>n = 128</h4>
+
+    <p>Medelvärde: 11.90, Standardavvikelse: 2.96</p>
+
+    <p>95 % konfidensintervall: [11.39, 12.42], längd: 1.03</p>
+
+    <p>99 % konfidensintervall: [11.22, 12.59], längd: 1.36</p>
+
+
+    <h4>n = 256</h4>
+
+    <p>Medelvärde: 11.97, Standardavvikelse: 2.72</p>
+
+    <p>95 % konfidensintervall: [11.64, 12.31], längd: 0.67</p>
+
+    <p>99 % konfidensintervall: [11.53, 12.41], längd: 0.88</p>
 
     <br>
     <br>
@@ -48,9 +81,17 @@
     <br>
 
     <h3>3. Då n ökar så blir konfidensintevallet mindre. Vad är väntevärdet
-        mu för pingtiden för den sida ni valt att pinga?</h3>
+        &mu; för pingtiden för den sida ni valt att pinga?</h3>
 
-    <p>Presentera mu här!</p>
+    <p>Väntevärdet &mu; för pingtiden för smhi.se ligger i intervallet
+        [11.64, 12.31] med 95 % säkerhet. </p>
+
+    <p>Intressant också att notera att pingtid förmodligen beror på flera
+        faktorer, t.ex. uppkoppling, samtidiga request på uppkopplingen mm.
+        Bland annat så hade jag avsevärt längre pingtider via SJs wifi än på
+        mitt eget wifi hemma. Jag såg även att pingtiden ökade avsevärt om
+        jag samtidigt som terminalen pingade, gjorde ett besök till en
+        webbsida i browsern.</p>
 
     <br>
     <br>
@@ -65,7 +106,20 @@
     <h3>1. Hitta en studie, datamängd eller liknande involverande två
         variabler som ni vill analysera korrelationen för.</h3>
 
-    <p>Presentera studie här!</p>
+    <p>Jag vill undersöka sambandet mellan disponibel mängd brännvin, och antalet
+        skador och förgiftningar som skett under rusets inflytande, under åren
+        1901 till 1909 i Sverige. </p>
+
+    <p>För detta har jag letat upp statistik på scb's hemsida. Mina källor är
+        tabellen på sidan XV i <a href="http://www.scb.se/H/BISOS%201851-1917/BISOS%20V%20Br%c3%a4nnvins%20tillverkning%20och%20f%c3%b6rs%c3%a4ljning%201873-1911/Brannvins-tillverkning-och-forsaljning-V-tillverkningsaret-1909-1910.pdf">
+        BRÄNNVINS TILLVERKNING OCH FÖRSÄLJNING...</a>, disponibelt till
+        förtäring för hvarje invånare i riket, samt <br> <br> respektive års
+        information i tabellen <em>Öfversikt öfver å lasarett och sjukstugor
+        intagna fall af skador och förgiftningar, fördelade efter skadans
+        tillkomstsätt</em>, tillkomstsätt "Under rusets inflytande", som du
+        finner under ämnesområde Hälso- och sjukvård, serie BISOS K Hälso- och
+        sjukvård 1861-1910 på <a href="http://www.scb.se/sv_/hitta-statistik/historisk-statistik/sok-publikationer-efter-amne/">
+        denna sida</a>.</p>
 
     <br>
     <br>
@@ -75,7 +129,12 @@
 
     <h3>2. Gör en scatterplot över datan.</h3>
 
-    <p>Presentera scatterplot här!</p>
+    <figure>
+        <img src="{% static 'reports/images/pearson1.png' %}"
+            alt="Skadade under rusets inflytande, plottat mot disponibelt till förtäring">
+        <figcaption>Skadade under rusets inflytande, plottat mot disponibelt
+            till förtäring, liter 50% per invånare</figcaption>
+    </figure>
 
     <br>
     <br>
